@@ -72,19 +72,18 @@ return {
             -- 'gopls',
         }
 
-        -- require('lspconfig').nil_ls.setup {
-        --     settings = {
-        --         ['nil'] = {
-        --             nix = {
-        --                 -- maxMemoryMB = 7680,
-        --                 flake = {
-        --                     autoArchive = true,
-        --                     autoEvalInputs = true,
-        --                 },
-        --             },
-        --         },
-        --     },
-        -- }
+        vim.api.nvim_create_user_command("Format", function(args)
+            local range = nil
+            if args.count ~= -1 then
+                local end_line = vim.api.nvim_buf_get_lines(0, args.line2 - 1, args.line2, true)[1]
+                range = {
+                    start = { args.line1, 0 },
+                    ["end"] = { args.line2, end_line:len() },
+                }
+            end
+            require("conform").format({ async = true, lsp_fallback = true, range = range })
+        end, { range = true })
+
         lsp.on_attach(function(_, bufnr)
             local nmap = function(keys, func, desc)
                 if desc then
@@ -94,8 +93,9 @@ return {
             end
 
             nmap('<leader>lr', vim.lsp.buf.rename, '[r]rename')
-            -- nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
-            nmap("<leader>lf", vim.lsp.buf.format, '[F]ormat')
+            nmap('<leader>la', vim.lsp.buf.code_action, '[C]ode [A]ction')
+            -- nmap("<leader>lf", vim.lsp.buf.format, '[F]ormat')
+            nmap("<leader>lf", "<cmd>Format<cr>", '[F]ormat')
             -- nmap("<leader>la", vim.lsp.buf.code_action, '[C]ode Action')
 
             nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
@@ -177,6 +177,8 @@ return {
                 end,
             },
         }
+
+        vim.opt.signcolumn = 'yes' -- Disable lsp signals shifting buffer
 
         vim.diagnostic.config {
             virtual_text = true,
