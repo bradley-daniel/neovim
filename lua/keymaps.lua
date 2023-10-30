@@ -35,3 +35,20 @@ vim.keymap.set('n', '<leader>e', '<cmd>Neotree toggle<cr>', { desc = 'Nvimtree' 
 -- Search center
 vim.keymap.set('n', 'n', 'nzzzv')
 vim.keymap.set('n', 'N', 'Nzzzv')
+
+-- Split manegment
+vim.keymap.set('n', '<leader>wh', '<C-w>t<C-w>H', { desc = "Vertical to Horizontal" })
+vim.keymap.set('n', '<leader>wk', '<C-w>t<C-w>K', { desc = "Horizontal to Vertical" })
+vim.keymap.set('n', '<leader>wc', '<C-w>c', { desc = "Quit pane" })
+
+
+vim.keymap.set('n', '<C-Right>', '<cmd>vertical resize +5<cr>')
+vim.keymap.set('n', '<C-Left>', '<cmd>vertical resize -5<cr>')
+vim.keymap.set('n', '<C-Down>', '<cmd>resize +5<cr>')
+vim.keymap.set('n', '<C-Up>', '<cmd>resize -5<cr>')
+
+
+-- Might remove
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = '[q] Open diagnostics list' })
