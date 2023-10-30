@@ -31,7 +31,7 @@
                 "--prefix"
                 "PATH"
                 ":"
-                "${lib.makeBinPath [pkgs.gcc pkgs.nil pkgs.lua-language-server ]}"
+                "${lib.makeBinPath [pkgs.gcc pkgs.nil pkgs.lua-language-server]}"
                 # "${lib.makeBinPath [pkgs.gcc pkgs.nil pkgs.lua-language-server pkgs.nodePackages_latest.pyright pkgs.python311Packages.flake8 pkgs.python311Packages.black]}"
               ];
             });
@@ -51,6 +51,7 @@
         devShells.default = pkgs.mkShell {
           nativeBuildInputs = [
             pkgs.stylua
+            pkgs.alejandra
           ];
         };
       }

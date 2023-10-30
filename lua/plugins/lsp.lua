@@ -30,16 +30,6 @@ return {
             'stevearc/conform.nvim',
         },
 
-        -- Flutter
-        {
-            'akinsho/flutter-tools.nvim',
-            lazy = false,
-            dependencies = {
-                'nvim-lua/plenary.nvim',
-                'stevearc/dressing.nvim', -- optional for vim.ui.select
-            },
-            config = true,
-        },
 
         -- Rust
         { 'simrat39/rust-tools.nvim' },
@@ -77,23 +67,24 @@ return {
             'clangd',
             -- 'tailwindcss',
             -- 'dartls',
-            'pyright'
+            'pyright',
+            'nil_ls'
             -- 'gopls',
         }
 
-        require('lspconfig').nil_ls.setup {
-            settings = {
-                ['nil'] = {
-                    nix = {
-                        -- maxMemoryMB = 7680,
-                        flake = {
-                            autoArchive = true,
-                            autoEvalInputs = true,
-                        },
-                    },
-                },
-            },
-        }
+        -- require('lspconfig').nil_ls.setup {
+        --     settings = {
+        --         ['nil'] = {
+        --             nix = {
+        --                 -- maxMemoryMB = 7680,
+        --                 flake = {
+        --                     autoArchive = true,
+        --                     autoEvalInputs = true,
+        --                 },
+        --             },
+        --         },
+        --     },
+        -- }
         lsp.on_attach(function(_, bufnr)
             local nmap = function(keys, func, desc)
                 if desc then
@@ -105,7 +96,7 @@ return {
             nmap('<leader>lr', vim.lsp.buf.rename, '[r]rename')
             -- nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
             nmap("<leader>lf", vim.lsp.buf.format, '[F]ormat')
-            nmap("<leader>la", vim.lsp.buf.code_action, '[C]ode Action')
+            -- nmap("<leader>la", vim.lsp.buf.code_action, '[C]ode Action')
 
             nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
             nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
@@ -129,13 +120,13 @@ return {
 
 
 
-        vim.api.nvim_create_autocmd('BufRead', {
-            group = vim.api.nvim_create_augroup('CmpSourceCargo', { clear = true }),
-            pattern = 'Cargo.toml',
-            callback = function()
-                cmp.setup.buffer { sources = { { name = 'crates' } } }
-            end,
-        })
+        -- vim.api.nvim_create_autocmd('BufRead', {
+        --     group = vim.api.nvim_create_augroup('CmpSourceCargo', { clear = true }),
+        --     pattern = 'Cargo.toml',
+        --     callback = function()
+        --         cmp.setup.buffer { sources = { { name = 'crates' } } }
+        --     end,
+        -- })
 
         -- local opts = { silent = true }
         -- vim.keymap.set('n', '<leader>cp', require('crates').show_popup, opts)
@@ -186,8 +177,6 @@ return {
                 end,
             },
         }
-
-        vim.opt.signcolumn = 'yes' -- Disable lsp signals shifting buffer
 
         vim.diagnostic.config {
             virtual_text = true,
