@@ -164,6 +164,11 @@ return {
                     position = 'below', -- or 'above', 'below', 'right', 'left'
                 },
             },
+            appearence = {
+                menu = {
+                    direction = 'above',
+                },
+            },
             source_names = {
                 nvim_lsp = "[LSP]",
                 emoji = "[Emoji]",
