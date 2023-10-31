@@ -1,7 +1,7 @@
 return {
     'akinsho/bufferline.nvim',
     version = 'v3.*',
-    dependencies = 'nvim-tree/nvim-web-devicons',
+    dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons', },
     config = {
         options = {
             offsets = {

@@ -1,7 +1,8 @@
 return {
+    'nvim-treesitter/nvim-treesitter',
     build = ":TSUpdate",
     event = { "BufReadPost", "BufWritePost", "BufNewFile", "VeryLazy" },
-    'nvim-treesitter/nvim-treesitter',
+    priority = 1,
     dependencies = {
         'nvim-treesitter/nvim-treesitter-textobjects',
     },
@@ -26,19 +27,19 @@ return {
 
                 'bash',
                 'nix',
-
-                -- Other
+                --
+                -- -- Other
                 'html',
                 'json',
                 'toml',
                 'yaml',
                 'htmldjango',
-
-                -- Quarto / markdown
+                --
+                -- -- Quarto / markdown
                 'markdown',
                 'markdown_inline',
-
-                -- Graphing in quarto
+                --
+                -- -- Graphing in quarto
                 'dot',
                 'mermaid',
             },
@@ -46,7 +47,7 @@ return {
 
             -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
             auto_install = false,
-            sync_install = false,
+            sync_install = true,
             ignore_install = {},
             modules = {},
 

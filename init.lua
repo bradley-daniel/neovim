@@ -39,11 +39,3 @@ require('lazy').setup {
         fallback = true,
     },
 }
-
-
--- require 'lsp.mason'
-
--- UI
-
-
--- Lsp
