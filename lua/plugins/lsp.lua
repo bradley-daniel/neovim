@@ -1,46 +1,4 @@
 local on_attach = function(_, bufnr)
-    local nmap = function(keys, func, desc)
-        if desc then
-            desc = 'LSP: ' .. desc
-        end
-        vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
-    end
-
-    nmap('<leader>lr', vim.lsp.buf.rename, '[r]rename')
-    nmap('<leader>la', vim.lsp.buf.code_action, '[C]ode [A]ction')
-    -- nmap("<leader>lf", vim.lsp.buf.format, '[F]ormat')
-    nmap("<leader>lf", "<cmd>Format<cr>", '[F]ormat')
-    -- nmap("<leader>la", vim.lsp.buf.code_action, '[C]ode Action')
-
-    nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
-    nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
-    nmap('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
-    nmap('<leader>lD', vim.lsp.buf.type_definition, 'Type [D]efinition')
-    nmap('<leader>ld', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
-    nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
-
-    -- See `:help K` for why this keymap
-    nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
-    nmap('<C-P>', vim.lsp.buf.signature_help, 'Signature Documentation')
-
-    -- Lesser used LSP functionality
-    nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-    vim.keymap.set('n', '<leader>i', function()
-        -- If we find a floating window, close it.
-        local found_float = false
-        for _, win in ipairs(vim.api.nvim_list_wins()) do
-            if vim.api.nvim_win_get_config(win).relative ~= '' then
-                vim.api.nvim_win_close(win, true)
-                found_float = true
-            end
-        end
-
-        if found_float then
-            return
-        end
-
-        vim.diagnostic.open_float(nil, { border = "rounded", focus = false, scope = 'line' })
-    end, { desc = '[i] nfo Diagnostics' })
 end
 return {
     'VonHeikemen/lsp-zero.nvim',
@@ -132,9 +90,53 @@ return {
             require("conform").format({ async = true, lsp_fallback = true, range = range })
         end, { range = true })
 
-        lsp.on_attach = on_attach
+        lsp.on_attach(function(_, bufnr)
+            local nmap = function(keys, func, desc)
+                if desc then
+                    desc = 'LSP: ' .. desc
+                end
+                vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
+            end
+
+            nmap('<leader>lr', vim.lsp.buf.rename, '[r]rename')
+            nmap('<leader>la', vim.lsp.buf.code_action, '[C]ode [A]ction')
+            -- nmap("<leader>lf", vim.lsp.buf.format, '[F]ormat')
+            nmap("<leader>lf", "<cmd>Format<cr>", '[F]ormat')
+            -- nmap("<leader>la", vim.lsp.buf.code_action, '[C]ode Action')
+
+            nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
+            nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
+            nmap('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
+            nmap('<leader>lD', vim.lsp.buf.type_definition, 'Type [D]efinition')
+            nmap('<leader>ld', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
+            nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+
+            -- See `:help K` for why this keymap
+            nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
+            nmap('<C-P>', vim.lsp.buf.signature_help, 'Signature Documentation')
+
+            -- Lesser used LSP functionality
+            nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+            vim.keymap.set('n', '<leader>i', function()
+                -- If we find a floating window, close it.
+                local found_float = false
+                for _, win in ipairs(vim.api.nvim_list_wins()) do
+                    if vim.api.nvim_win_get_config(win).relative ~= '' then
+                        vim.api.nvim_win_close(win, true)
+                        found_float = true
+                    end
+                end
+
+                if found_float then
+                    return
+                end
+
+                vim.diagnostic.open_float(nil, { border = "rounded", focus = false, scope = 'line' })
+            end, { desc = '[i] nfo Diagnostics' })
+        end)
 
         lsp.setup()
+
 
         -- Might remove
         vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
