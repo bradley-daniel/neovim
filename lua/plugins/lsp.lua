@@ -141,21 +141,6 @@ return {
         vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
         vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = '[q] Open diagnostics list' })
 
-
-
-        -- vim.api.nvim_create_autocmd('BufRead', {
-        --     group = vim.api.nvim_create_augroup('CmpSourceCargo', { clear = true }),
-        --     pattern = 'Cargo.toml',
-        --     callback = function()
-        --         cmp.setup.buffer { sources = { { name = 'crates' } } }
-        --     end,
-        -- })
-
-        -- local opts = { silent = true }
-        -- vim.keymap.set('n', '<leader>cp', require('crates').show_popup, opts)
-        --
-
-
         local cmp = require 'cmp'
         local cmp_action = require('lsp-zero').cmp_action()
         local luasnip = require 'luasnip'
