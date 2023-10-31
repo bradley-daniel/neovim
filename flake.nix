@@ -52,6 +52,7 @@
           nativeBuildInputs = [
             pkgs.stylua
             pkgs.alejandra
+            pkgs.git
           ];
         };
       }
