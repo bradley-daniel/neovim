@@ -151,9 +151,82 @@ return {
         luasnip.config.setup {}
 
         cmp.setup {
-            mapping = {
-                ['<Tab>'] = cmp_action.luasnip_supertab(),
-                ['<S-Tab>'] = cmp_action.luasnip_shift_supertab(),
+            snippet = {
+                expand = function(args)
+                    luasnip.lsp_expand(args.body)
+                end,
+            },
+            mapping = cmp.mapping.preset.insert {
+                ['<C-n>'] = cmp.mapping.select_next_item(),
+                ['<C-p>'] = cmp.mapping.select_prev_item(),
+                ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+                ['<C-f>'] = cmp.mapping.scroll_docs(4),
+                ['<C-Space>'] = cmp.mapping.complete {},
+                ['<CR>'] = cmp.mapping.confirm {
+                    behavior = cmp.ConfirmBehavior.Replace,
+                    select = true,
+                },
+                ['<Tab>'] = cmp.mapping(function(fallback)
+                    if cmp.visible() then
+                        cmp.select_next_item()
+                    elseif luasnip.expand_or_locally_jumpable() then
+                        luasnip.expand_or_jump()
+                    else
+                        fallback()
+                    end
+                end, { 'i', 's' }),
+                ['<S-Tab>'] = cmp.mapping(function(fallback)
+                    if cmp.visible() then
+                        cmp.select_prev_item()
+                    elseif luasnip.locally_jumpable(-1) then
+                        luasnip.jump(-1)
+                    else
+                        fallback()
+                    end
+                end, { 'i', 's' }),
+            },
+            appearence = {
+                menu = {
+                    direction = 'above',
+                },
+            },
+            view = {
+                entries = { name = 'custom', selection_order = 'near_cursor' }
+            },
+            formatting = {
+                max_width = 120,
+                fields = { 'kind', 'abbr', 'menu' },
+                source_names = {
+                    nvim_lsp = "[LSP]",
+                    emoji = "[Emoji]",
+                    path = "[Path]",
+                    calc = "[Calc]",
+                    cmp_tabnine = "[Tabnine]",
+                    vsnip = "[Snippet]",
+                    luasnip = "[Snippet]",
+                    buffer = "[Buffer]",
+                    tmux = "[TMUX]",
+                    copilot = "[Copilot]",
+                    treesitter = "[TreeSitter]",
+                    latex_symbols = "[tex]",
+                    pandoc_references = "[ref]",
+                    ['vim-dadbod-completion'] = "[DB]",
+                },
+                format = function(_, vim_item)
+                    vim_item.kind = vim.icons.kind[vim_item.kind] or "?"
+                    vim_item.abbr = string.sub(vim_item.abbr, 0, 50)
+                    return vim_item
+                end,
+            },
+            sources = {
+                { name = 'nvim_lsp' },
+                { name = 'luasnip' },
+                { name = 'otter' },
+                { name = 'pandoc_references' },
+                { name = 'latex_symbols' },
+                { name = 'vim-dadbod-completion' },
+                { name = 'buffer' },
+                { name = "path" },
             },
             window = {
                 ---@diagnostic disable-next-line: undefined-field
@@ -163,35 +236,6 @@ return {
                     border = 'rounded', -- or 'double' or 'rounded' or 'none'
                     position = 'below', -- or 'above', 'below', 'right', 'left'
                 },
-            },
-            appearence = {
-                menu = {
-                    direction = 'above',
-                },
-            },
-            source_names = {
-                nvim_lsp = "[LSP]",
-                emoji = "[Emoji]",
-                path = "[Path]",
-                calc = "[Calc]",
-                cmp_tabnine = "[Tabnine]",
-                vsnip = "[Snippet]",
-                luasnip = "[Snippet]",
-                buffer = "[Buffer]",
-                tmux = "[TMUX]",
-                copilot = "[Copilot]",
-                treesitter = "[TreeSitter]",
-                latex_symbols = "[tex]",
-                pandoc_references = "[ref]",
-                ['vim-dadbod-completion'] = "[DB]",
-            },
-            formatting = {
-                fields = { 'kind', 'abbr', 'menu' },
-                format = function(_, vim_item)
-                    vim_item.kind = vim.icons.kind[vim_item.kind] or "?"
-                    vim_item.abbr = string.sub(vim_item.abbr, 0, 50)
-                    return vim_item
-                end,
             },
         }
 
