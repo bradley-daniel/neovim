@@ -46,3 +46,4 @@ vim.keymap.set('n', '<C-Right>', '<cmd>vertical resize +5<cr>')
 vim.keymap.set('n', '<C-Left>', '<cmd>vertical resize -5<cr>')
 vim.keymap.set('n', '<C-Down>', '<cmd>resize +5<cr>')
 vim.keymap.set('n', '<C-Up>', '<cmd>resize -5<cr>')
+
