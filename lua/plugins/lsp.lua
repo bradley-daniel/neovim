@@ -1,5 +1,3 @@
-local on_attach = function(_, bufnr)
-end
 return {
     'VonHeikemen/lsp-zero.nvim',
     event = { "BufReadPost", "BufWritePost", "BufNewFile" },
@@ -213,7 +211,7 @@ return {
                     ['vim-dadbod-completion'] = "[DB]",
                 },
                 format = function(entry, vim_item)
-                    vim_item.kind = vim.icons.kind[vim_item.kind] or "?"
+                    vim_item.kind = string.format("%s ", vim.icons.kind[vim_item.kind] or "?")
                     vim_item.abbr = string.sub(vim_item.abbr, 0, 50)
                     vim_item.menu = ({
                         nvim_lsp = "[LSP]",
