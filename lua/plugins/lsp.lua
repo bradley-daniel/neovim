@@ -5,25 +5,29 @@ return {
     dependencies = {
         -- LSP Support
         { 'neovim/nvim-lspconfig' },
-        { 'j-hui/fidget.nvim',           tag = 'legacy', opts = {} },
+        { 'j-hui/fidget.nvim',    tag = 'legacy', opts = {} },
 
         -- Autocompletion
         { 'hrsh7th/nvim-cmp' },
         { 'hrsh7th/cmp-nvim-lsp' },
         { 'hrsh7th/cmp-buffer' },
         { 'hrsh7th/cmp-path' },
-        { 'saadparwaiz1/cmp_luasnip' },
         { 'hrsh7th/cmp-nvim-lua' },
-        { 'onsails/lspkind.nvim' },
         { 'folke/neodev.nvim' },
 
+        -- pandoc
+        { 'hrsh7th/cmp-calc' },
+        { 'jmbuhr/cmp-pandoc-references' },
 
         -- Snippets
         { 'L3MON4D3/LuaSnip' },
         { 'rafamadriz/friendly-snippets' },
+        { 'saadparwaiz1/cmp_luasnip' },
+
 
         -- Esthetic
         { 'folke/trouble.nvim' },
+
 
         -- Misc
         {
@@ -32,15 +36,15 @@ return {
 
 
         -- Rust
-        { 'simrat39/rust-tools.nvim' },
-        {
-            'saecki/crates.nvim',
-            tag = 'v0.4.0',
-            dependencies = { 'nvim-lua/plenary.nvim' },
-            config = function()
-                require('crates').setup()
-            end,
-        },
+        -- { 'simrat39/rust-tools.nvim' },
+        -- {
+        --     'saecki/crates.nvim',
+        --     tag = 'v0.4.0',
+        --     dependencies = { 'nvim-lua/plenary.nvim' },
+        --     config = function()
+        --         require('crates').setup()
+        --     end,
+        -- },
     },
     config = function()
         local lsp = require 'lsp-zero'
@@ -111,28 +115,31 @@ return {
 
             -- Lesser used LSP functionality
             nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-            -- vim.keymap.set('n', '<leader>i', function()
-            --     -- If we find a floating window, close it.
-            --     local found_float = false
-            --     for _, win in ipairs(vim.api.nvim_list_wins()) do
-            --         if vim.api.nvim_win_get_config(win).relative ~= '' then
-            --             vim.api.nvim_win_close(win, true)
-            --             found_float = true
-            --         end
-            --     end
-            --
-            --     if found_float then
-            --         return
-            --     end
-            --
-            --     vim.diagnostic.open_float(nil, { border = "rounded", focus = false, scope = 'line' })
-            -- end, { desc = '[i] nfo Diagnostics' })
+            vim.keymap.set('n', '<leader>i', function()
+                -- If we find a floating window, close it.
+                local found_float = false
+                for _, win in ipairs(vim.api.nvim_list_wins()) do
+                    if vim.api.nvim_win_get_config(win).relative ~= '' then
+                        vim.api.nvim_win_close(win, true)
+                        found_float = true
+                    end
+                end
+
+                if found_float then
+                    return
+                end
+
+                vim.diagnostic.open_float(nil, { border = "rounded", focus = false, scope = 'line' })
+            end, { desc = '[i] nfo Diagnostics' })
         end)
 
         lsp.setup()
 
-        local cmp = require 'cmp'
-        local cmp_action = require('lsp-zero').cmp_action()
+
+        -- Might remove
+        vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
+        vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
+        vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = '[q] Open diagnostics list' })
 
 
 
@@ -149,6 +156,8 @@ return {
         --
 
 
+        local cmp = require 'cmp'
+        local cmp_action = require('lsp-zero').cmp_action()
         local luasnip = require 'luasnip'
 
         require('luasnip.loaders.from_vscode').lazy_load()
@@ -193,8 +202,6 @@ return {
                 end,
             },
         }
-
-        vim.opt.signcolumn = 'yes' -- Disable lsp signals shifting buffer
 
         vim.diagnostic.config {
             virtual_text = true,

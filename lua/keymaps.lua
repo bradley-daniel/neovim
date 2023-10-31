@@ -46,9 +46,3 @@ vim.keymap.set('n', '<C-Right>', '<cmd>vertical resize +5<cr>')
 vim.keymap.set('n', '<C-Left>', '<cmd>vertical resize -5<cr>')
 vim.keymap.set('n', '<C-Down>', '<cmd>resize +5<cr>')
 vim.keymap.set('n', '<C-Up>', '<cmd>resize -5<cr>')
-
-
--- Might remove
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = '[q] Open diagnostics list' })
