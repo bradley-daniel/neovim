@@ -17,24 +17,21 @@
         lib = nixpkgs.lib;
         pkgs = nixpkgs.legacyPackages.${system};
 
-        nvim =
-          pkgs.wrapNeovimUnstable (pkgs.neovim-unwrapped)
-          (pkgs.neovimUtils.makeNeovimConfig
-            {
-              customRC = ''
-                set runtimepath^=${./.}
-                source ${./.}/init.lua
-              '';
-            }
-            // {
-              wrapperArgs = [
-                "--prefix"
-                "PATH"
-                ":"
-                "${lib.makeBinPath [pkgs.gcc pkgs.nil pkgs.lua-language-server]}"
-                # "${lib.makeBinPath [pkgs.gcc pkgs.nil pkgs.lua-language-server pkgs.nodePackages_latest.pyright pkgs.python311Packages.flake8 pkgs.python311Packages.black]}"
-              ];
-            });
+        nvim = pkgs.wrapNeovimUnstable (pkgs.neovim-unwrapped) (pkgs.neovimUtils.makeNeovimConfig
+          {
+            customRC = ''
+              set runtimepath^=${./.}
+              source ${./.}/init.lua
+            '';
+          }
+          // {
+            wrapperArgs = [
+              "--prefix"
+              "PATH"
+              ":"
+              "${lib.makeBinPath [pkgs.gcc pkgs.nil pkgs.lua-language-server]}"
+            ];
+          });
       in {
         overlays = {
           neovim = _: prev: {
@@ -49,10 +46,10 @@
         };
 
         devShells.default = pkgs.mkShell {
-          nativeBuildInputs = [
-            pkgs.stylua
-            pkgs.alejandra
-            pkgs.git
+          nativeBuildInputs = with pkgs; [
+            stylua
+            alejandra
+            git
           ];
         };
       }
