@@ -230,7 +230,11 @@ return {
             },
             window = {
                 ---@diagnostic disable-next-line: undefined-field
-                completion = cmp.config.window.bordered(),
+                -- completion = cmp.config.window.bordered(),
+                completion = {
+                    border = 'rounded',
+                    position = 'above'
+                },
                 ---@diagnostic disable-next-line: undefined-field
                 documentation = {
                     border = 'rounded', -- or 'double' or 'rounded' or 'none'
