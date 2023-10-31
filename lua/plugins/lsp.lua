@@ -185,14 +185,14 @@ return {
                     end
                 end, { 'i', 's' }),
             },
-            appearence = {
-                menu = {
-                    direction = 'above',
-                },
-            },
-            view = {
-                entries = { name = 'custom', selection_order = 'near_cursor' }
-            },
+            -- appearence = {
+            --     menu = {
+            --         direction = 'above',
+            --     },
+            -- },
+            -- view = {
+            --     entries = { name = 'custom', selection_order = 'near_cursor' }
+            -- },
             formatting = {
                 max_width = 120,
                 fields = { 'kind', 'abbr', 'menu' },
@@ -212,9 +212,25 @@ return {
                     pandoc_references = "[ref]",
                     ['vim-dadbod-completion'] = "[DB]",
                 },
-                format = function(_, vim_item)
+                format = function(entry, vim_item)
                     vim_item.kind = vim.icons.kind[vim_item.kind] or "?"
                     vim_item.abbr = string.sub(vim_item.abbr, 0, 50)
+                    vim_item.menu = ({
+                        nvim_lsp = "[LSP]",
+                        emoji = "[Emoji]",
+                        path = "[Path]",
+                        calc = "[Calc]",
+                        cmp_tabnine = "[Tabnine]",
+                        vsnip = "[Snippet]",
+                        luasnip = "[Snippet]",
+                        buffer = "[Buffer]",
+                        tmux = "[TMUX]",
+                        copilot = "[Copilot]",
+                        treesitter = "[TreeSitter]",
+                        latex_symbols = "[tex]",
+                        pandoc_references = "[ref]",
+                        ['vim-dadbod-completion'] = "[DB]",
+                    })[entry.source.name]
                     return vim_item
                 end,
             },
