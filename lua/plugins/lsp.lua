@@ -76,6 +76,9 @@ return {
                         highlight = "Comment",
                     },
                 }
+            },
+            config = {
+                require('rust-tools').inlay_hints.set()
             }
         },
         {
@@ -92,8 +95,6 @@ return {
 
         require('neodev').setup {}
 
-
-        require('rust-tools').inlay_hints.set()
 
 
         lsp.preset 'recommended'
