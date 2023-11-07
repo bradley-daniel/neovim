@@ -77,9 +77,6 @@ return {
                     },
                 }
             },
-            config = {
-                require('rust-tools').inlay_hints.set()
-            }
         },
         {
             'saecki/crates.nvim',
@@ -95,6 +92,7 @@ return {
 
         require('neodev').setup {}
 
+        require('rust-tools').inlay_hints.set()
 
 
         lsp.preset 'recommended'
