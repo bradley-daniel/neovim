@@ -36,15 +36,15 @@ return {
 
 
         -- Rust
-        -- { 'simrat39/rust-tools.nvim' },
-        -- {
-        --     'saecki/crates.nvim',
-        --     tag = 'v0.4.0',
-        --     dependencies = { 'nvim-lua/plenary.nvim' },
-        --     config = function()
-        --         require('crates').setup()
-        --     end,
-        -- },
+        { 'simrat39/rust-tools.nvim' },
+        {
+            'saecki/crates.nvim',
+            tag = 'v0.4.0',
+            dependencies = { 'nvim-lua/plenary.nvim' },
+            config = function()
+                require('crates').setup()
+            end,
+        },
     },
     config = function()
         local lsp = require 'lsp-zero'
@@ -72,8 +72,9 @@ return {
             -- 'tailwindcss',
             -- 'dartls',
             'pyright',
-            'nil_ls'
+            'nil_ls',
             -- 'gopls',
+            'gramerly'
         }
 
         vim.api.nvim_create_user_command("Format", function(args)
