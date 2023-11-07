@@ -38,6 +38,7 @@ return {
         -- Rust
         {
             'simrat39/rust-tools.nvim',
+            opts = {
                 tools = {
                     inlay_hints = {
                         -- automatically set inlay hints (type hints)
@@ -76,7 +77,6 @@ return {
                     },
                 }
             }
-
         },
         {
             'saecki/crates.nvim',
