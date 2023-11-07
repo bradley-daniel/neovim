@@ -92,7 +92,7 @@ return {
 
         require('neodev').setup {}
 
-        require('rust-tools').inlay_hints.set()
+        require('rust-tools').inlay_hints.enable()
 
 
         lsp.preset 'recommended'
