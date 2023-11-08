@@ -14,6 +14,18 @@ return {
                     crust = "#bac2de",
                 },
             },
+            -- higlight_overrides = {
+            --     all = function(colors)
+            --         return {
+            --             Comment = { fg = "#000000" },
+            --         }
+            --     end,
+            -- },
+            custom_highlights = function(colors)
+                return {
+                    ['@function.builtin'] = { fg = colors.blue },
+                }
+            end
 
 
             --     transparent_background = true,
