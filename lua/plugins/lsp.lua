@@ -296,8 +296,10 @@ return {
                 completion = cmp.config.window.bordered(),
                 ---@diagnostic disable-next-line: undefined-field
                 documentation = {
-                    border = 'rounded', -- or 'double' or 'rounded' or 'none'
-                    position = 'below', -- or 'above', 'below', 'right', 'left'
+                    border = 'double', -- or 'double' or 'rounded' or 'none'
+                    -- position = 'below', -- or 'above', 'below', 'right', 'left'
+                    -- position = 'above',
+                    -- max_width = 10000,
                 },
             },
         }
