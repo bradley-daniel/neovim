@@ -297,6 +297,7 @@ return {
                 ---@diagnostic disable-next-line: undefined-field
                 documentation = {
                     border = 'double', -- or 'double' or 'rounded' or 'none'
+                    zindex = 1,
                     -- position = 'below', -- or 'above', 'below', 'right', 'left'
                     -- position = 'above',
                     -- max_width = 10000,
