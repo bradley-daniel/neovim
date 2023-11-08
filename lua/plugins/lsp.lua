@@ -38,6 +38,7 @@ return {
         -- Rust
         {
             'simrat39/rust-tools.nvim',
+            ft = "rust",
             config = function()
                 local opts = {
                     tools = {

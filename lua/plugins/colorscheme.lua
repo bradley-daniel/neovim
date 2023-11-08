@@ -15,6 +15,7 @@ return {
                 },
             },
 
+
             --     transparent_background = true,
             --     custom_highlights = function(colors)
             --         local u = require("catppuccin.utils.colors")
