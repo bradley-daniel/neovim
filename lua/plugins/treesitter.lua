@@ -43,6 +43,9 @@ return {
                 -- -- Graphing in quarto
                 'dot',
                 'mermaid',
+
+                -- Database
+                'sql',
             },
 
 
