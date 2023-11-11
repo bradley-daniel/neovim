@@ -121,6 +121,7 @@ return {
             -- 'dartls',
             'pyright',
             'nil_ls',
+            'hls'
             -- 'gopls',
             -- 'gramerly'
         }
@@ -198,6 +199,10 @@ return {
         luasnip.config.setup {}
 
         cmp.setup {
+            -- completion = {
+            --     completeopt = 'menu,menuone,noselect',
+            --     autocompletion = false,
+            -- },
             snippet = {
                 expand = function(args)
                     luasnip.lsp_expand(args.body)

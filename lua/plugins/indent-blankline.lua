@@ -1,6 +1,6 @@
 return {
     "lukas-reineke/indent-blankline.nvim",
-    version = "2.x.x",
+    -- version = "2.x.x",
     event = "BufReadPre",
     opts = {
         buftype_exclude = { "terminal", "nofile" },
@@ -14,11 +14,27 @@ return {
             "Trouble",
             "text",
         },
-        char = "│",
-        context_char = "│",
-        show_trailing_blankline_indent = false,
-        show_first_indent_level = true,
-        use_treesitter = true,
-        show_current_context = true,
+        indent = {
+            higlight = {
+                "CursorColumn",
+                "Whitespace",
+            },
+            char = "│",
+        },
+        whitespace = {
+            higlight = {
+                "CursorColumn",
+                "Whitespace",
+            },
+            show_trailing_blankline_indent = false,
+            use_treesitter = true,
+        },
+        scope = { enable = true },
+
+        -- char = "│",
+        -- context_char = "│",
+        -- show_trailing_blankline_indent = false,
+        -- show_first_indent_level = true,
+        -- show_current_context = true,
     },
 }
