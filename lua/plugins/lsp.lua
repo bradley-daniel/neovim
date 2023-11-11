@@ -121,7 +121,8 @@ return {
             -- 'dartls',
             'pyright',
             'nil_ls',
-            'hls'
+            'hls',
+            'sqlls'
             -- 'gopls',
             -- 'gramerly'
         }
