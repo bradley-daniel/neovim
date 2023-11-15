@@ -201,7 +201,7 @@ return {
         cmp.setup {
             completion = {
                 completeopt = 'menu,menuone,noinsert,noselect',
-                -- autocomplete = false,
+                autocomplete = false,
             },
             snippet = {
                 expand = function(args)
@@ -320,7 +320,7 @@ return {
                 nix = { 'alejandra' },
                 rust = { 'rustfmt' },
                 markdown = { 'mdformat' },
-                python = { 'black' }
+                python = { 'ruff' }
             },
         }
     end,

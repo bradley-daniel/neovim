@@ -8,6 +8,7 @@ vim.cmd [[
     let g:loaded_netrwPlugin = 1
 ]]
 
+
 vim.icons = require 'ui.icons'
 
 -- These must be here for it to package with Nix.
