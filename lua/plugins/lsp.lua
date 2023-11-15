@@ -320,7 +320,7 @@ return {
                 nix = { 'alejandra' },
                 rust = { 'rustfmt' },
                 markdown = { 'mdformat' },
-                python = { 'ruff' }
+                python = { 'ruff_format' }
             },
         }
     end,
