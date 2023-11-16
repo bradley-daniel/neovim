@@ -99,24 +99,7 @@ return {
 
 
 
-        lsp.preset = {
-            float_border = 'rounded',
-            call_servers = 'local',
-            configure_diagnostics = true,
-            setup_servers_on_start = true,
-            set_lsp_keymaps = {
-                preserve_mappings = true,
-                omit = {},
-            },
-            manage_nvim_cmp = {
-                set_sources = 'recommended',
-                set_basic_mappings = true,
-                set_extra_mappings = false,
-                use_luasnip = true,
-                set_format = true,
-                documentation_window = true,
-            },
-        }
+        lsp.preset 'minimal'
         lsp.nvim_workspace()
         lsp.set_preferences {
             sign_icons = {
