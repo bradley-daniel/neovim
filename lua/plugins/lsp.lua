@@ -99,7 +99,24 @@ return {
 
 
 
-        lsp.preset 'recommended'
+        lsp.preset = {
+            float_border = 'rounded',
+            call_servers = 'local',
+            configure_diagnostics = true,
+            setup_servers_on_start = true,
+            set_lsp_keymaps = {
+                preserve_mappings = true,
+                omit = {},
+            },
+            manage_nvim_cmp = {
+                set_sources = 'recommended',
+                set_basic_mappings = true,
+                set_extra_mappings = false,
+                use_luasnip = true,
+                set_format = true,
+                documentation_window = true,
+            },
+        }
         lsp.nvim_workspace()
         lsp.set_preferences {
             sign_icons = {
@@ -209,15 +226,15 @@ return {
                 end,
             },
             mapping = cmp.mapping.preset.insert {
-                ['<C-n>'] = cmp.mapping.select_next_item(),
-                ['<C-p>'] = cmp.mapping.select_prev_item(),
-                ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-                ['<C-f>'] = cmp.mapping.scroll_docs(4),
-                ['<C-Space>'] = cmp.mapping.complete {},
-                ['<CR>'] = cmp.mapping.confirm {
-                    behavior = cmp.ConfirmBehavior.Replace,
-                    select = true,
-                },
+                -- ['<C-n>'] = cmp.mapping.select_next_item(),
+                -- ['<C-p>'] = cmp.mapping.select_prev_item(),
+                -- ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+                -- ['<C-f>'] = cmp.mapping.scroll_docs(4),
+                -- ['<C-Space>'] = cmp.mapping.complete {},
+                -- ['<CR>'] = cmp.mapping.confirm {
+                --     behavior = cmp.ConfirmBehavior.Replace,
+                --     select = true,
+                -- },
                 ['<Tab>'] = cmp.mapping(function(fallback)
                     if cmp.visible() then
                         cmp.select_next_item()
