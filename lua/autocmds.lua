@@ -4,6 +4,8 @@ vim.api.nvim_create_autocmd({ "RecordingEnter", "CmdlineEnter" }, {
         vim.opt.cmdheight = 1
     end,
 })
+
+
 vim.api.nvim_create_autocmd({ "RecordingLeave", "CmdlineLeave" }, {
     callback = function()
         vim.opt.cmdheight = 0
