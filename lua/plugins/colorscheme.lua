@@ -14,6 +14,11 @@ return {
                     crust = "#bac2de",
                 },
             },
+            custom_highlights = function(colors)
+                return {
+                    ['@function.builtin'] = { fg = colors.blue },
+                }
+            end
             -- higlight_overrides = {
             --     all = function(colors)
             --         return {
@@ -21,13 +26,6 @@ return {
             --         }
             --     end,
             -- },
-            custom_highlights = function(colors)
-                return {
-                    ['@function.builtin'] = { fg = colors.blue },
-                }
-            end
-
-
             --     transparent_background = true,
             --     custom_highlights = function(colors)
             --         local u = require("catppuccin.utils.colors")
