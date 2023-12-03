@@ -3,18 +3,8 @@ return {
     dependencies = {
         'kevinhwang91/promise-async',
         'nvim-treesitter/nvim-treesitter',
-        'nvim-treesitter/queries/filetype/folds.scm'
     },
     config = function()
-        -- require('ufo').setup({
-        --     provider_selector = function(bufnr, filetype, buftype)
-        --         return { 'treesitter', 'indent' }
-        --     end,
-        --
-        -- })
-        --
-
-        use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
         require('ufo').setup({
             provider_selector = function(bufnr, filetype, buftype)
                 return { 'treesitter', 'indent' }
