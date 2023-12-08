@@ -114,17 +114,10 @@ return {
         lsp.setup_servers {
             'lua_ls',
             'rust_analyzer',
-            -- 'zls',
-            -- 'tsserver',
             'clangd',
-            -- 'tailwindcss',
-            -- 'dartls',
             'pyright',
             'nil_ls',
             'hls',
-            'grammarly'
-            -- 'gopls',
-            -- 'gramerly'
         }
 
         vim.api.nvim_create_user_command("Format", function(args)
