@@ -9,7 +9,6 @@ vim.opt.expandtab = true
 
 vim.opt.smartindent = true
 vim.opt.wrap = false
-vim.opt.signcolumn = "yes"
 vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
@@ -19,7 +18,9 @@ vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 vim.o.foldenable = true   -- enable fold for nvim-ufo
 vim.o.foldlevel = 99      -- set high foldlevel for nvim-ufo
 vim.o.foldlevelstart = 99 -- start with all code unfolded
-vim.o.foldcolumn = '1'
+vim.o.foldcolumn = '0'
+
+vim.opt.signcolumn = "yes"
 
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
