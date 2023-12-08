@@ -122,6 +122,7 @@ return {
             'pyright',
             'nil_ls',
             'hls',
+            'grammarly'
             -- 'gopls',
             -- 'gramerly'
         }

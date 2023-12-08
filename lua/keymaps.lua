@@ -9,8 +9,8 @@ vim.keymap.set("n", "j", "gj")
 vim.keymap.set("n", "k", "gk")
 
 -- split windows
-vim.keymap.set('n', '<leader>\"', vim.cmd.split, { desc = "split window" })
-vim.keymap.set('n', '<leader>%', vim.cmd.vsplit, { desc = "split window" })
+vim.keymap.set('n', '<leader>\"', vim.cmd.split, { desc = "Split Horizontal" })
+vim.keymap.set('n', '<leader>%', vim.cmd.vsplit, { desc = "split Vertical" })
 
 -- Copy - Paste Commands
 vim.keymap.set({ "x", "v", 'n' }, "<leader>p", [["+p]], { desc = "[p]aste System Clipboard" })
@@ -27,6 +27,7 @@ vim.keymap.set("n", "J", "mzJ`z")
 -- Undo tree
 vim.keymap.set("n", "<leader>u", "<cmd>UndotreeToggle<cr>", { desc = "[U]ndotree Toggle" })
 
+vim.keymap.set("i", "<C-c>", "<Esc>")
 
 -- vim.keymap.set('n', '<leader>e', '<cmd>NvimTreeToggle<cr>', { desc = 'Nvimtree' })
 vim.keymap.set('n', '<leader>e', '<cmd>Neotree toggle<cr>', { desc = 'Nvimtree' })
@@ -46,4 +47,3 @@ vim.keymap.set('n', '<C-Right>', '<cmd>vertical resize +5<cr>')
 vim.keymap.set('n', '<C-Left>', '<cmd>vertical resize -5<cr>')
 vim.keymap.set('n', '<C-Down>', '<cmd>resize +5<cr>')
 vim.keymap.set('n', '<C-Up>', '<cmd>resize -5<cr>')
-
