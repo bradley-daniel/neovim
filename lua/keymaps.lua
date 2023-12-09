@@ -49,4 +49,4 @@ vim.keymap.set('n', '<C-Down>', '<cmd>resize +5<cr>')
 vim.keymap.set('n', '<C-Up>', '<cmd>resize -5<cr>')
 
 
-vim.keymap.set('n', '<leader>bc', '<cmd>:bn|:bd#<cr>', {"[B]uffer close"})
+vim.keymap.set('n', '<leader>bc', '<cmd>:bn|:bd#<cr>', {desc = "[B]uffer close"})
