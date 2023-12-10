@@ -186,17 +186,16 @@ return {
         vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = '[q] Open diagnostics list' })
 
         local cmp = require 'cmp'
+        local cmp_window = require "cmp.config.window"
+        local cmp_mapping = require "cmp.config.mapping"
         local cmp_action = require('lsp-zero').cmp_action()
         local luasnip = require 'luasnip'
 
         require('luasnip.loaders.from_vscode').lazy_load()
         luasnip.config.setup {}
 
+
         cmp.setup {
-            completion = {
-                completeopt = 'menuone,noinsert',
-                autocomplete = false,
-            },
             snippet = {
                 expand = function(args)
                     luasnip.lsp_expand(args.body)
@@ -208,7 +207,7 @@ return {
                 ['<C-Space>'] = cmp.mapping.complete {},
                 ['<CR>'] = cmp.mapping.confirm {
                     behavior = cmp.ConfirmBehavior.Replace,
-                    select = true,
+                    -- select = true,
                 },
                 ['<Tab>'] = cmp.mapping(function(fallback)
                     if cmp.visible() then
@@ -289,15 +288,10 @@ return {
                 { name = "path" },
             },
             window = {
-                ---@diagnostic disable-next-line: undefined-field
-                completion = cmp.config.window.bordered(),
-                ---@diagnostic disable-next-line: undefined-field
+                completion = cmp_window.bordered(),
                 documentation = {
-                    border = 'double', -- or 'double' or 'rounded' or 'none'
+                    border = 'double',
                     zindex = 1,
-                    -- position = 'below', -- or 'above', 'below', 'right', 'left'
-                    -- position = 'above',
-                    -- max_width = 10000,
                 },
             },
         }
