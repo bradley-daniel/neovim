@@ -1,6 +1,5 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
-
 vim.opt.laststatus = 3
 
 vim.cmd [[
@@ -12,7 +11,6 @@ vim.cmd [[
 vim.icons = require 'ui.icons'
 
 -- These must be here for it to package with Nix.
--- Vim
 require 'options'
 require 'keymaps'
 require 'autocmds'
