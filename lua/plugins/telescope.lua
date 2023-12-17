@@ -17,8 +17,8 @@ return {
             end,
         },
     },
-    config = function()
         ---@diagnostic disable-next-line: redundant-parameter
+    config = function()
         require('telescope').setup({
             mappings = {
                 i = {
