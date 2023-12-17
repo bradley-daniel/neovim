@@ -29,7 +29,7 @@ end
 
 return {
     "kevinhwang91/nvim-ufo",
-    event = { "InsertEnter" },
+    event = { "InsertEnter", "VeryLazy"},
     dependencies = { "kevinhwang91/promise-async" },
     opts = {
         fold_virt_text_handler = handler,
