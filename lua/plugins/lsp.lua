@@ -109,6 +109,26 @@ return {
                 info = vim.icons.diagnostics.Information,
             },
         }
+        require('lspconfig').rust_analyzer.setup({
+            settings = {
+                ["rust-analyzer"] = {
+                    imports = {
+                        granularity = {
+                            group = "module",
+                        },
+                        prefix = "self",
+                    },
+                    cargo = {
+                        buildScripts = {
+                            enable = true,
+                        },
+                    },
+                    procMacro = {
+                        enable = true
+                    },
+                }
+            }
+        })
 
         -- Configure Servers
         lsp.setup_servers {
@@ -119,20 +139,6 @@ return {
             'nil_ls',
             'hls',
         }
-        -- local nvim_lsp = require 'lspconfig'
-
-        -- require('lspconfig').rust_analyzer.setup {
-        --     settings = {
-        --         ["rust-analyzer"] = {
-        --             diagnostics = {
-        --                 enable = true,
-        --                 disabled = { "unresolved-proc-macro" },
-        --                 enableExperimental = true,
-        --             },
-        --         }
-        --     }
-        -- }
-
         vim.api.nvim_create_user_command("Format", function(args)
             local range = nil
             if args.count ~= -1 then
