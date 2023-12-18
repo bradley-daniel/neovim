@@ -133,7 +133,7 @@ return {
         -- Configure Servers
         lsp.setup_servers {
             'lua_ls',
-            'rust_analyzer',
+            -- 'rust_analyzer',
             'clangd',
             'pyright',
             'nil_ls',
@@ -144,6 +144,10 @@ return {
         lsp.configure('rust_analyzer', {
             settings = {
                 ['rust-analyzer'] = {
+                    diagnostics = {
+                        enable = false,
+
+                    },
                     imports = {
                         granularity = {
                             group = "module",
