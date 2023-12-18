@@ -118,7 +118,7 @@ return {
                         nowait = false, -- disable `nowait` if you have existing combos starting with this char that you want to use
                     },
                     ["<2-LeftMouse>"] = "open",
-                    ["<cr>"] = "open",
+                    ["o"] = "open",
                     ["<esc>"] = "cancel", -- close preview or floating neo-tree window
                     ["P"] = { "toggle_preview", config = { use_float = true } },
                     ["l"] = "focus_preview",
@@ -216,7 +216,7 @@ return {
                         ["<c-x>"] = "clear_filter",
                         ["[g"] = "prev_git_modified",
                         ["]g"] = "next_git_modified",
-                        ["o"] = { "show_help", nowait = false, config = { title = "Order by", prefix_key = "o" } },
+                        ["oh"] = { "show_help", nowait = false, config = { title = "Order by", prefix_key = "o" } },
                         ["oc"] = { "order_by_created", nowait = false },
                         ["od"] = { "order_by_diagnostics", nowait = false },
                         ["og"] = { "order_by_git_status", nowait = false },
