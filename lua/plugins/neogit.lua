@@ -7,5 +7,12 @@ return {
         "sindrets/diffview.nvim",        -- optional
         "ibhagwan/fzf-lua",              -- optional
     },
+    opts = {
+        mappings = {
+            status = {
+                ["o"] = "Toggle",
+            },
+        },
+    },
     config = true
 }

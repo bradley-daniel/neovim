@@ -29,9 +29,6 @@ return {
             show_trailing_blankline_indent = false,
             use_treesitter = true,
         },
-        mappings = {
-            ["o"] = "Toggle",
-        },
         scope = { enable = true },
 
         -- char = "│",

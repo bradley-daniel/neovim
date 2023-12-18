@@ -1,6 +1,6 @@
 return {
     "nvim-neo-tree/neo-tree.nvim",
-    cmd = "Neotree",
+    -- cmd = "Neotree",
     -- ft = 'netrw',
     branch = "v3.x",
     dependencies = {
@@ -29,6 +29,13 @@ return {
             open_files_do_not_replace_types = { "terminal", "trouble", "qf" }, -- when opening files, do not use windows containing these filetypes or buftypes
             sort_case_insensitive = false,                                     -- used when sorting files and directories in the tree
             sort_function = nil,                                               -- use a custom function for sorting files and directories in the tree
+            -- sort_function = function (a,b)
+            --       if a.type == b.type then
+            --           return a.path > b.path
+            --       else
+            --           return a.type > b.type
+            --       end
+            --   end , -- this sorts files and directories descendantly
             default_component_configs = {
                 container = {
                     enable_character_fade = true
@@ -118,7 +125,7 @@ return {
                         nowait = false, -- disable `nowait` if you have existing combos starting with this char that you want to use
                     },
                     ["<2-LeftMouse>"] = "open",
-                    ["o"] = "open",
+                    ["<cr>"] = "open",
                     ["<esc>"] = "cancel", -- close preview or floating neo-tree window
                     ["P"] = { "toggle_preview", config = { use_float = true } },
                     ["l"] = "focus_preview",
@@ -216,7 +223,7 @@ return {
                         ["<c-x>"] = "clear_filter",
                         ["[g"] = "prev_git_modified",
                         ["]g"] = "next_git_modified",
-                        ["oh"] = { "show_help", nowait = false, config = { title = "Order by", prefix_key = "o" } },
+                        ["o"] = { "show_help", nowait = false, config = { title = "Order by", prefix_key = "o" } },
                         ["oc"] = { "order_by_created", nowait = false },
                         ["od"] = { "order_by_diagnostics", nowait = false },
                         ["og"] = { "order_by_git_status", nowait = false },
