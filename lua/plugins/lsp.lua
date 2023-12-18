@@ -144,10 +144,10 @@ return {
         lsp.configure('rust_analyzer', {
             settings = {
                 ['rust-analyzer'] = {
-                    diagnostics = {
-                        enable = false,
-
-                    },
+                    -- diagnostics = {
+                    --     enable = false,
+                    --
+                    -- },
                     imports = {
                         granularity = {
                             group = "module",
