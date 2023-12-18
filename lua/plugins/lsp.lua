@@ -120,15 +120,27 @@ return {
             'hls',
         }
 
-        lsp.rust_analyzer.setup = {
-            ['rust-analyzer'] = {
-                diagnostics = {
-                    enable = true,
-                    disable = { "unresolved-proc-macro" },
-                    enableExperimental = true,
+        require('lspconfig').nil_ls.setup {
+            settings = {
+                ['rust-analyzer'] = {
+                    diagnostics = {
+                        enable = true,
+                        disabled = { "unresolved-proc-macro" },
+                        enableExperimental = true,
+                    },
                 }
             }
         }
+        -- lsp.configure('rust_analyzer', {
+        --     settings = {
+        --         diagnostics = {
+        --             enable = true,
+        --             disabled = { "unresolved-proc-macro" },
+        --             enableExperimental = true,
+        --         },
+        --     }
+        -- }
+        -- )
 
         vim.api.nvim_create_user_command("Format", function(args)
             local range = nil
