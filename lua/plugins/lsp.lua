@@ -120,6 +120,16 @@ return {
             'hls',
         }
 
+        lsp.rust_analyzer.setup = {
+            ['rust-analyzer'] = {
+                diagnostics = {
+                    enable = true,
+                    disable = { "unresolved-proc-macro" },
+                    enableExperimental = true,
+                }
+            }
+        }
+
         vim.api.nvim_create_user_command("Format", function(args)
             local range = nil
             if args.count ~= -1 then
@@ -198,27 +208,27 @@ return {
                 ['<C-f>'] = cmp.mapping.scroll_docs(4),
                 ['<C-Space>'] = cmp.mapping.complete {},
 
-              -- ["<CR>"] = cmp_mapping(function(fallback)
-              --   if cmp.visible() then
-              --     local confirm_opts = vim.deepcopy({behavior = ConfirmBehavior.Replace}) -- avoid mutating the original opts below
-              --     local is_insert_mode = function()
-              --       return vim.api.nvim_get_mode().mode:sub(1, 1) == "i"
-              --     end
-              --     if is_insert_mode() then -- prevent overwriting brackets
-              --       confirm_opts.behavior = ConfirmBehavior.Insert
-              --     end
-              --     local entry = cmp.get_selected_entry()
-              --     local is_copilot = entry and entry.source.name == "copilot"
-              --     if is_copilot then
-              --       confirm_opts.behavior = ConfirmBehavior.Replace
-              --       confirm_opts.select = true
-              --     end
-              --     if cmp.confirm(confirm_opts) then
-              --       return -- success, exit early
-              --     end
-              --   end
-              --   fallback() -- if not exited early, always fallback
-              -- end),
+                -- ["<CR>"] = cmp_mapping(function(fallback)
+                --   if cmp.visible() then
+                --     local confirm_opts = vim.deepcopy({behavior = ConfirmBehavior.Replace}) -- avoid mutating the original opts below
+                --     local is_insert_mode = function()
+                --       return vim.api.nvim_get_mode().mode:sub(1, 1) == "i"
+                --     end
+                --     if is_insert_mode() then -- prevent overwriting brackets
+                --       confirm_opts.behavior = ConfirmBehavior.Insert
+                --     end
+                --     local entry = cmp.get_selected_entry()
+                --     local is_copilot = entry and entry.source.name == "copilot"
+                --     if is_copilot then
+                --       confirm_opts.behavior = ConfirmBehavior.Replace
+                --       confirm_opts.select = true
+                --     end
+                --     if cmp.confirm(confirm_opts) then
+                --       return -- success, exit early
+                --     end
+                --   end
+                --   fallback() -- if not exited early, always fallback
+                -- end),
                 ['<CR>'] = cmp.mapping.confirm {
                     behavior = cmp.ConfirmBehavior.Replace,
                     select = false,
