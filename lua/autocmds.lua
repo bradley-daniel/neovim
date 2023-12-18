@@ -31,5 +31,10 @@ end, {})
 
 
 vim.api.nvim_create_autocmd("VimEnter", {
-    command = "set nornu nonu | Neotree position=current",
+    callback=function ()
+        if vim.fn.argc() == 0 then
+            vim.cmd "Neotree position=current"
+
+        end
+    end
 })
