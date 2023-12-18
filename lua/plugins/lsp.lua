@@ -121,17 +121,17 @@ return {
         }
         -- local nvim_lsp = require 'lspconfig'
 
-        require('lspconfig').rust_analyzer.setup {
-            settings = {
-                ["rust-analyzer"] = {
-                    diagnostics = {
-                        enable = true,
-                        disabled = { "unresolved-proc-macro" },
-                        enableExperimental = true,
-                    },
-                }
-            }
-        }
+        -- require('lspconfig').rust_analyzer.setup {
+        --     settings = {
+        --         ["rust-analyzer"] = {
+        --             diagnostics = {
+        --                 enable = true,
+        --                 disabled = { "unresolved-proc-macro" },
+        --                 enableExperimental = true,
+        --             },
+        --         }
+        --     }
+        -- }
 
         vim.api.nvim_create_user_command("Format", function(args)
             local range = nil
