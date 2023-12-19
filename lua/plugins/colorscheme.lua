@@ -43,7 +43,8 @@ return {
                 --     end,
             }
             require('catppuccin').setup(opts)
-            vim.cmd [[ colorscheme catppuccin ]]
+            -- vim.cmd [[ colorscheme catppuccin ]]
+            vim.cmd [[ colorscheme kanagawa ]]
         end,
     },
     {
