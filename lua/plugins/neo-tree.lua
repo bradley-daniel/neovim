@@ -288,13 +288,5 @@ return {
                 }
             }
         })
-
-        -- ---@diagnostic disable-next-line: undefined-field
-        -- if vim.bo.filetype == 'netrw' and vim.b.netrw_method == nil then
-        --     vim.defer_fn(function()
-        --         ---@diagnostic disable-next-line: undefined-field
-        --         vim.cmd('enew | Neotree current dir=' .. vim.b.netrw_curdir)
-        --     end, 0)
-        -- end
     end,
 }
