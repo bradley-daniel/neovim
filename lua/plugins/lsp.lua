@@ -5,7 +5,7 @@ return {
     dependencies = {
         -- LSP Support
         { 'neovim/nvim-lspconfig' },
-        { 'j-hui/fidget.nvim',    tag = 'legacy', opts = {} },
+        { 'j-hui/fidget.nvim',           tag = 'legacy', opts = {} },
 
         -- Autocompletion
         { 'hrsh7th/nvim-cmp' },
@@ -331,6 +331,24 @@ return {
                 markdown = { 'mdformat' },
                 python = { 'ruff_format' }
             },
+        }
+
+
+
+        local signs = {
+            Error = vim.icons.diagnostics.Error,
+            Warn = vim.icons.diagnostics.Warning,
+            Hint = vim.icons.diagnostics.Hint,
+            Info = vim.icons.diagnostics.Information,
+        }
+
+        for type, icon in pairs(signs) do
+            local hl = "DiagnosticSign" .. type
+            vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+        end
+
+        vim.diagnostic.config {
+            virtual_text = true,
         }
     end,
 }
