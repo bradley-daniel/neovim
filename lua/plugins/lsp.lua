@@ -1,11 +1,11 @@
 return {
     'VonHeikemen/lsp-zero.nvim',
-    event = { "BufReadPost", "BufWritePost", "BufNewFile" },
+    -- event = { "BufReadPost", "BufWritePost", "BufNewFile" },
     branch = 'v1.x',
     dependencies = {
         -- LSP Support
         { 'neovim/nvim-lspconfig' },
-        { 'j-hui/fidget.nvim',           tag = 'legacy', opts = {} },
+        { 'j-hui/fidget.nvim',    tag = 'legacy', opts = {} },
 
         -- Autocompletion
         { 'hrsh7th/nvim-cmp' },
@@ -16,8 +16,8 @@ return {
         { 'folke/neodev.nvim' },
 
         -- pandoc
-        { 'hrsh7th/cmp-calc' },
-        { 'jmbuhr/cmp-pandoc-references' },
+        -- { 'hrsh7th/cmp-calc' },
+        -- { 'jmbuhr/cmp-pandoc-references' },
 
         -- Snippets
         { 'L3MON4D3/LuaSnip' },
@@ -144,10 +144,6 @@ return {
         lsp.configure('rust_analyzer', {
             settings = {
                 ['rust-analyzer'] = {
-                    diagnostics = {
-                        enable = false,
-
-                    },
                     imports = {
                         granularity = {
                             group = "module",
@@ -273,18 +269,17 @@ return {
                 fields = { 'kind', 'abbr', 'menu' },
                 source_names = {
                     nvim_lsp = "[LSP]",
-                    emoji = "[Emoji]",
+                    -- emoji = "[Emoji]",
                     path = "[Path]",
-                    calc = "[Calc]",
                     cmp_tabnine = "[Tabnine]",
                     vsnip = "[Snippet]",
                     luasnip = "[Snippet]",
                     buffer = "[Buffer]",
                     tmux = "[TMUX]",
-                    copilot = "[Copilot]",
+                    -- copilot = "[Copilot]",
                     treesitter = "[TreeSitter]",
-                    latex_symbols = "[tex]",
-                    pandoc_references = "[ref]",
+                    -- latex_symbols = "[tex]",
+                    -- pandoc_references = "[ref]",
                     ['vim-dadbod-completion'] = "[DB]",
                 },
                 format = function(entry, vim_item)
@@ -294,16 +289,16 @@ return {
                         nvim_lsp = "[LSP]",
                         emoji = "[Emoji]",
                         path = "[Path]",
-                        calc = "[Calc]",
+                        -- calc = "[Calc]",
                         cmp_tabnine = "[Tabnine]",
                         vsnip = "[Snippet]",
                         luasnip = "[Snippet]",
                         buffer = "[Buffer]",
                         tmux = "[TMUX]",
-                        copilot = "[Copilot]",
+                        -- copilot = "[Copilot]",
                         treesitter = "[TreeSitter]",
-                        latex_symbols = "[tex]",
-                        pandoc_references = "[ref]",
+                        -- latex_symbols = "[tex]",
+                        -- pandoc_references = "[ref]",
                         ['vim-dadbod-completion'] = "[DB]",
                     })[entry.source.name]
                     return vim_item
@@ -312,9 +307,9 @@ return {
             sources = {
                 { name = 'nvim_lsp' },
                 { name = 'luasnip' },
-                { name = 'otter' },
-                { name = 'pandoc_references' },
-                { name = 'latex_symbols' },
+                -- { name = 'otter' },
+                -- { name = 'pandoc_references' },
+                -- { name = 'latex_symbols' },
                 { name = 'vim-dadbod-completion' },
                 { name = 'buffer' },
                 { name = "path" },
@@ -326,10 +321,6 @@ return {
                     zindex = 1,
                 },
             },
-        }
-
-        vim.diagnostic.config {
-            virtual_text = true,
         }
 
         require('conform').setup {
