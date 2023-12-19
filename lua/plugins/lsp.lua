@@ -202,14 +202,17 @@ return {
 
             -- Lesser used LSP functionality
             nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-            vim.keymap.set('n', '<leader>i', function()
-                local found_float = false
-                if found_float then
-                    return
-                end
 
-                vim.diagnostic.open_float(nil, { border = "rounded", focus = false, scope = 'line' })
-            end, { desc = '[i] nfo Diagnostics' })
+            nmap('<leader>i', vim.diagnostic.open_float(nil, { border = "rounded", focus = false, scope = 'line' }), '[i]nfo diagnostics')
+
+            -- vim.keymap.set('n', '<leader>i', function()
+            --     local found_float = false
+            --     if found_float then
+            --         return
+            --     end
+            --
+            --     vim.diagnostic.open_float(nil, { border = "rounded", focus = false, scope = 'line' })
+            -- end, { desc = '[i] nfo Diagnostics' })
         end)
 
         lsp.setup()
