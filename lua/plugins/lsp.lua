@@ -1,35 +1,35 @@
 return {
     'VonHeikemen/lsp-zero.nvim',
-    -- event = { "BufReadPost", "BufWritePost", "BufNewFile" },
-    branch = 'v1.x',
+    event = { "BufReadPost", "BufWritePost", "BufNewFile" },
+    -- branch = 'v1.x',
     dependencies = {
         -- LSP Support
         { 'neovim/nvim-lspconfig' },
         { 'j-hui/fidget.nvim',           tag = 'legacy', opts = {} },
-
-        -- Autocompletion
+        --
+        -- -- Autocompletion
         { 'hrsh7th/nvim-cmp' },
         { 'hrsh7th/cmp-nvim-lsp' },
         { 'hrsh7th/cmp-buffer' },
         { 'hrsh7th/cmp-path' },
         { 'hrsh7th/cmp-nvim-lua' },
         { 'folke/neodev.nvim' },
-
-        -- pandoc
-        -- { 'hrsh7th/cmp-calc' },
-        -- { 'jmbuhr/cmp-pandoc-references' },
-
-        -- Snippets
+        --
+        -- -- pandoc
+        -- -- { 'hrsh7th/cmp-calc' },
+        -- -- { 'jmbuhr/cmp-pandoc-references' },
+        --
+        -- -- Snippets
         { 'L3MON4D3/LuaSnip' },
         { 'rafamadriz/friendly-snippets' },
         { 'saadparwaiz1/cmp_luasnip' },
-
-
-        -- Esthetic
+        --
+        --
+        -- -- Esthetic
         { 'folke/trouble.nvim' },
-
-
-        -- Misc
+        --
+        --
+        -- -- Misc
         {
             'stevearc/conform.nvim',
         },
@@ -100,7 +100,10 @@ return {
 
 
         lsp.preset 'minimal'
-        lsp.nvim_workspace()
+        -- lsp.()
+        -- lsp.nvim_workspace()
+        --
+
         lsp.set_preferences {
             sign_icons = {
                 error = vim.icons.diagnostics.Error,
@@ -109,31 +112,10 @@ return {
                 info = vim.icons.diagnostics.Information,
             },
         }
-        require('lspconfig').rust_analyzer.setup({
-            settings = {
-                ["rust-analyzer"] = {
-                    imports = {
-                        granularity = {
-                            group = "module",
-                        },
-                        prefix = "self",
-                    },
-                    cargo = {
-                        buildScripts = {
-                            enable = true,
-                        },
-                    },
-                    procMacro = {
-                        enable = true
-                    },
-                }
-            }
-        })
-
         -- Configure Servers
         lsp.setup_servers {
             'lua_ls',
-            -- 'rust_analyzer',
+            'rust_analyzer',
             'clangd',
             'pyright',
             'nil_ls',
@@ -141,26 +123,26 @@ return {
         }
 
 
-        lsp.configure('rust_analyzer', {
-            settings = {
-                ['rust-analyzer'] = {
-                    imports = {
-                        granularity = {
-                            group = "module",
-                        },
-                        prefix = "self",
-                    },
-                    cargo = {
-                        buildScripts = {
-                            enable = true,
-                        },
-                    },
-                    procMacro = {
-                        enable = true
-                    },
-                }
-            }
-        })
+        -- lsp.configure('rust_analyzer', {
+        --     settings = {
+        --         ['rust-analyzer'] = {
+        --             -- imports = {
+        --             --     granularity = {
+        --             --         group = "module",
+        --             --     },
+        --             --     prefix = "self",
+        --             -- },
+        --             -- cargo = {
+        --             --     buildScripts = {
+        --             --         enable = true,
+        --             --     },
+        --             -- },
+        --             -- procMacro = {
+        --             --     enable = true
+        --             -- },
+        --         }
+        --     }
+        -- })
 
 
         vim.api.nvim_create_user_command("Format", function(args)
@@ -203,29 +185,25 @@ return {
             -- Lesser used LSP functionality
             nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
         end)
-
+        --
         vim.keymap.set('n', '<leader>i', function()
             vim.diagnostic.open_float(nil, { border = "rounded", focus = false, scope = 'line' })
         end, { desc = '[i] nfo Diagnostics' })
-
+        --
         lsp.setup()
 
 
-        -- Might remove
-        vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
-        vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
-        vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = '[q] Open diagnostics list' })
 
         local cmp = require 'cmp'
         local cmp_window = require "cmp.config.window"
-        local cmp_mapping = require "cmp.config.mapping"
-        local cmp_action = require('lsp-zero').cmp_action()
+        -- -- local cmp_mapping = require "cmp.config.mapping"
+        -- -- local cmp_action = require('lsp-zero').cmp_action()
         local luasnip = require 'luasnip'
-
+        --
         require('luasnip.loaders.from_vscode').lazy_load()
         luasnip.config.setup {}
-
-
+        --
+        --
         cmp.setup {
             snippet = {
                 expand = function(args)
@@ -265,17 +243,13 @@ return {
                 fields = { 'kind', 'abbr', 'menu' },
                 source_names = {
                     nvim_lsp = "[LSP]",
-                    -- emoji = "[Emoji]",
                     path = "[Path]",
                     cmp_tabnine = "[Tabnine]",
                     vsnip = "[Snippet]",
                     luasnip = "[Snippet]",
                     buffer = "[Buffer]",
                     tmux = "[TMUX]",
-                    -- copilot = "[Copilot]",
                     treesitter = "[TreeSitter]",
-                    -- latex_symbols = "[tex]",
-                    -- pandoc_references = "[ref]",
                     ['vim-dadbod-completion'] = "[DB]",
                 },
                 format = function(entry, vim_item)
@@ -283,18 +257,13 @@ return {
                     vim_item.abbr = string.sub(vim_item.abbr, 0, 50)
                     vim_item.menu = ({
                         nvim_lsp = "[LSP]",
-                        emoji = "[Emoji]",
                         path = "[Path]",
-                        -- calc = "[Calc]",
                         cmp_tabnine = "[Tabnine]",
                         vsnip = "[Snippet]",
                         luasnip = "[Snippet]",
                         buffer = "[Buffer]",
                         tmux = "[TMUX]",
-                        -- copilot = "[Copilot]",
                         treesitter = "[TreeSitter]",
-                        -- latex_symbols = "[tex]",
-                        -- pandoc_references = "[ref]",
                         ['vim-dadbod-completion'] = "[DB]",
                     })[entry.source.name]
                     return vim_item
@@ -318,7 +287,7 @@ return {
                 },
             },
         }
-
+        --
         require('conform').setup {
             formatters_by_ft = {
                 lua = { 'stylua' },
@@ -337,12 +306,12 @@ return {
             Hint = vim.icons.diagnostics.Hint,
             Info = vim.icons.diagnostics.Information,
         }
-
+        --
         for type, icon in pairs(signs) do
             local hl = "DiagnosticSign" .. type
             vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
         end
-
+        --
         vim.diagnostic.config {
             virtual_text = true,
         }
