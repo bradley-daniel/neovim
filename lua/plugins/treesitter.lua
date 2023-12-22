@@ -33,7 +33,7 @@ return {
                 'html',
                 'json',
                 'toml',
-                'yaml',
+                -- 'yaml',
                 'htmldjango',
                 --
                 -- -- Quarto / markdown
