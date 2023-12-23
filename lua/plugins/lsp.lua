@@ -94,6 +94,7 @@ return {
     },
     config = function()
         local lsp = require 'lsp-zero'
+        lsp.extend_lspconfig()
 
         require('neodev').setup {}
 
