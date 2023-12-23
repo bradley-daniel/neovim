@@ -191,7 +191,7 @@ return {
             vim.diagnostic.open_float(nil, { border = "rounded", focus = false, scope = 'line' })
         end, { desc = '[i] nfo Diagnostics' })
         --
-        lsp.setup()
+        -- lsp.setup()
 
 
 
