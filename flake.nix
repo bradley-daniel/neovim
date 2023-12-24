@@ -17,6 +17,20 @@
         lib = nixpkgs.lib;
         pkgs = nixpkgs.legacyPackages.${system};
 
+        runtimeDeps = with pkgs; [
+            # Treesitter
+            gcc
+            
+            # LSP/Linters
+            nil
+
+            lua-language-server
+
+            # Telescope
+            ripgrep
+
+        ];
+
         nvim = pkgs.wrapNeovimUnstable (pkgs.neovim-unwrapped) (pkgs.neovimUtils.makeNeovimConfig
           {
             customRC = ''
@@ -29,7 +43,7 @@
               "--prefix"
               "PATH"
               ":"
-              "${lib.makeBinPath [pkgs.gcc pkgs.nil pkgs.lua-language-server]}"
+              "${lib.makeBinPath runtimeDeps}"
             ];
           });
       in {
@@ -47,9 +61,9 @@
 
         devShells.default = pkgs.mkShell {
           nativeBuildInputs = with pkgs; [
-            stylua
             alejandra
             git
+            stylua
           ];
         };
       }
