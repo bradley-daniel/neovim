@@ -63,6 +63,7 @@ return {
             'pyright',
             'nil_ls',
             'hls',
+            'tsserver'
         }
 
 
