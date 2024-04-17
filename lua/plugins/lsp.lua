@@ -63,27 +63,6 @@ return {
 			"tsserver",
 		})
 
-		-- lsp.configure('rust_analyzer', {
-		--     settings = {
-		--         ['rust-analyzer'] = {
-		--             -- imports = {
-		--             --     granularity = {
-		--             --         group = "module",
-		--             --     },
-		--             --     prefix = "self",
-		--             -- },
-		--             -- cargo = {
-		--             --     buildScripts = {
-		--             --         enable = true,
-		--             --     },
-		--             -- },
-		--             -- procMacro = {
-		--             --     enable = true
-		--             -- },
-		--         }
-		--     }
-		-- })
-
 		vim.api.nvim_create_user_command("Format", function(args)
 			local range = nil
 			if args.count ~= -1 then
@@ -233,8 +212,8 @@ return {
 				rust = { "rustfmt" },
 				markdown = { "mdformat" },
 				python = { "ruff_format" },
-				javascript = { "prettierd" },
-				typescript = { "prettierd" },
+				javascript = { "prettier" },
+				typescript = { "prettier" },
 			},
 		})
 		--
