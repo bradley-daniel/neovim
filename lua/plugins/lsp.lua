@@ -214,6 +214,7 @@ return {
 				python = { "ruff_format" },
 				javascript = { "prettier" },
 				typescript = { "prettier" },
+				typescriptreact = { "prettier" },
 			},
 		})
 		--
