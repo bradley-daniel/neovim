@@ -2,10 +2,10 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 vim.opt.laststatus = 3
 
-vim.cmd [[
-    let g:loaded_netrw       = 1
-    let g:loaded_netrwPlugin = 1
-]]
+-- vim.cmd [[
+--     let g:loaded_netrw       = 1
+--     let g:loaded_netrwPlugin = 1
+-- ]]
 
 
 vim.icons = require 'ui.icons'

@@ -30,11 +30,11 @@ vim.api.nvim_create_user_command('Wrap', function()
 end, {})
 
 
-vim.api.nvim_create_autocmd("VimEnter", {
-    callback=function ()
-        if vim.fn.argc() == 0 then
-            vim.cmd "Neotree position=current"
-
-        end
-    end
-})
+-- vim.api.nvim_create_autocmd("VimEnter", {
+--     callback=function ()
+--         if vim.fn.argc() == 0 then
+--             vim.cmd "Neotree position=current"
+--
+--         end
+--     end
+-- })

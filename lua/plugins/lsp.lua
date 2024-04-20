@@ -212,9 +212,10 @@ return {
 				rust = { "rustfmt" },
 				markdown = { "mdformat" },
 				python = { "ruff_format" },
-				javascript = { "prettier" },
-				typescript = { "prettier" },
-				typescriptreact = { "prettier" },
+				javascript = { { "prettierd", "prettier" } },
+				typescript = { { "prettierd", "prettier" } },
+				typescriptreact = { { "prettierd", "prettier" } },
+				json = { { "prettierd", "prettier" } },
 			},
 		})
 		--

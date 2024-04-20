@@ -18,17 +18,16 @@
         pkgs = nixpkgs.legacyPackages.${system};
 
         runtimeDeps = with pkgs; [
-            # Treesitter
-            gcc
-            
-            # LSP/Linters
-            nil
+          # Treesitter
+          gcc
 
-            lua-language-server
+          # LSP/Linters
+          nil
 
-            # Telescope
-            ripgrep
+          lua-language-server
 
+          # Telescope
+          ripgrep
         ];
 
         nvim = pkgs.wrapNeovimUnstable (pkgs.neovim-unwrapped) (pkgs.neovimUtils.makeNeovimConfig
@@ -36,6 +35,7 @@
             customRC = ''
               set runtimepath^=${./.}
               source ${./.}/init.lua
+
             '';
           }
           // {
