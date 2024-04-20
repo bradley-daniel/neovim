@@ -32,7 +32,8 @@ vim.keymap.set("n", "<leader>u", "<cmd>UndotreeToggle<cr>", { desc = "[U]ndotree
 vim.keymap.set("i", "<C-c>", "<Esc>")
 
 -- vim.keymap.set('n', '<leader>e', '<cmd>NvimTreeToggle<cr>', { desc = 'Nvimtree' })
-vim.keymap.set('n', '<leader>e', '<cmd>Neotree toggle<cr>', { desc = 'Nvimtree' })
+-- vim.keymap.set('n', '<leader>e', '<cmd>Neotree toggle<cr>', { desc = 'Nvimtree' })
+vim.keymap.set('n', '<leader>e', '<cmd>Oil<cr>', { desc = 'Nvimtree' })
 
 
 -- Search center
