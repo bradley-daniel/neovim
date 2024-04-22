@@ -24,14 +24,42 @@ return {
 		local cmp_lsp = require("cmp_nvim_lsp")
 		require("luasnip.loaders.from_vscode").lazy_load()
 
+		-- local capabilities = vim.lsp.protocol.make_client_capabilities()
+		-- capabilities = vim.tbl_deep_extend("force", capabilities, cmp_lsp.default_capabilities())
 		local capabilities = cmp_lsp.default_capabilities()
 
-		local servers = { "clangd", "rust_analyzer", "pyright", "lua_ls", "tsserver", "html", "nil_ls" }
+		-- local servers = {
+		-- 	"rust_analyzer",
+		--           "lua_ls",
+		-- }
+		local servers = {
+			clangd = {},
+			rust_analyzer = {},
+			pyright = {},
+			tsserver = {},
+			html = {},
+			nil_ls = {},
 
-		for _, lsp in ipairs(servers) do
+			lua_ls = {
+				-- cmd = {...},
+				-- filetypes = { ...},
+				-- capabilities = {},
+				settings = {
+					Lua = {
+						completion = {
+							callSnippet = "Replace",
+						},
+						-- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
+						-- diagnostics = { disable = { 'missing-fields' } },
+					},
+				},
+			},
+		}
+
+		for lsp, config in pairs(servers) do
 			lspconfig[lsp].setup({
-				-- on_attach = my_custom_on_attach,
 				capabilities = capabilities,
+				settings = config.settings,
 			})
 		end
 
