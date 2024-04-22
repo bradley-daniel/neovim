@@ -51,7 +51,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-	pattern = { "*.py", },
+	pattern = { "*.py" },
 	callback = function()
 		require("lint").try_lint()
 	end,
