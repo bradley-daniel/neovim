@@ -1,6 +1,6 @@
 return {
-    'stevearc/conform.nvim',
-    config = function ()
+	"stevearc/conform.nvim",
+	config = function()
 		require("conform").setup({
 			formatters_by_ft = {
 				lua = { "stylua" },
@@ -13,8 +13,8 @@ return {
 				html = { { "prettierd", "prettier" } },
 				typescriptreact = { { "prettierd", "prettier" } },
 				json = { { "prettierd", "prettier" } },
+				c = { "clang-format" },
 			},
 		})
-    end
-
+	end,
 }
