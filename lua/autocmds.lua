@@ -14,11 +14,11 @@ vim.api.nvim_create_autocmd({ "RecordingLeave", "CmdlineLeave" }, {
 -- Show higlighting when yanking
 local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {
+	group = highlight_group,
+	pattern = "*",
 	callback = function()
 		vim.highlight.on_yank()
 	end,
-	group = highlight_group,
-	pattern = "*",
 })
 
 vim.api.nvim_create_user_command("Wrap", function()
@@ -28,25 +28,36 @@ vim.api.nvim_create_user_command("Wrap", function()
 	end)
 end, {})
 
--- vim.api.nvim_create_autocmd("FileType", {
--- 	pattern = "oil",
--- 	callback = function()
--- 		print("hello")
--- 		vim.keymap.set("n", "<leader>e", function()
--- 			require("oil.actions").close.callback()
--- 		end, { desc = "Nvimtree" })
--- 	end,
--- })
---
--- vim.api.nvim_create_autocmd("VimEnter", {
---     callback=function ()
---         if vim.fn.argc() == 0 then
---             vim.cmd "Oil ."
---
---         end
---     end
--- })
+vim.api.nvim_create_autocmd("LspAttach", {
+	callback = function(ev)
+		local opts = { buffer = ev.buf }
+		vim.keymap.set("n", "<space>lr", vim.lsp.buf.rename, opts)
+		vim.keymap.set("n", "K", function()
+			vim.lsp.buf.hover()
+		end, opts)
+		vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+		vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+		vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
+		vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
+		-- vim.keymap.set("n", "lf", "<cmd>Format<cr>", opts)
+		-- vim.keymap.set("n", "lf", vim.lsp.buf.format, opts)
+		vim.keymap.set("n", "lf", require("conform").format, opts)
+		vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+		vim.keymap.set({ "n", "v" }, "<space>la", vim.lsp.buf.code_action, opts)
+		vim.keymap.set("n", "<leader>i", function()
+			vim.diagnostic.open_float(nil, { border = "rounded", focus = false, scope = "line" })
+		end, { desc = "[i] nfo Diagnostics" })
+	end,
+})
 
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+	pattern = { "*.py", },
+	callback = function()
+		require("lint").try_lint()
+	end,
+})
+
+--
 -- vim.api.nvim_create_autocmd("VimEnter", {
 --     callback=function ()
 --         if vim.fn.argc() == 0 then

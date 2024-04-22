@@ -33,6 +33,8 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup {
     import = 'plugins',
+
+    ---@diagnostic disable-next-line: assign-type-mismatch
     dev = {
         path = '~/dev',
         fallback = true,

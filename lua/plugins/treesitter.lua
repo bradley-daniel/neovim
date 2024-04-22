@@ -25,7 +25,7 @@ return {
 				"python",
 				"typescript",
 				"javascript",
-                "tsx",
+				"tsx",
 
 				"bash",
 				"nix",
@@ -47,6 +47,7 @@ return {
 
 				-- Database
 				"sql",
+				"yaml",
 			},
 
 			autotag = { enable = true },
