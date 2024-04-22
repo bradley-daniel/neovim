@@ -6,8 +6,9 @@ return {
 				lua = { "stylua" },
 				nix = { "alejandra" },
 				rust = { "rustfmt" },
-				markdown = { "mdformat" },
+				quarto = { "prettier" },
 				python = { "ruff_format" },
+				markdown = { { "prettierd", "prettier" } },
 				javascript = { { "prettierd", "prettier" } },
 				typescript = { { "prettierd", "prettier" } },
 				html = { { "prettierd", "prettier" } },
@@ -16,5 +17,13 @@ return {
 				c = { "clang-format" },
 			},
 		})
+
+		require("conform").formatters.prettier = {
+			options = {
+				ft_parsers = {
+					quarto = "markdown",
+				},
+			},
+		}
 	end,
 }

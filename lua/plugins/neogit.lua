@@ -1,5 +1,6 @@
 return {
 	"NeogitOrg/neogit",
+	cmd = "Neogit",
 	dependencies = {
 		"nvim-lua/plenary.nvim", -- required
 		"sindrets/diffview.nvim", -- optional - Diff integration
@@ -10,6 +11,8 @@ return {
 	},
 	config = function()
 		require("neogit").setup({})
+	end,
+	init = function()
 		vim.keymap.set("n", "<leader>g", "<cmd>Neogit<cr>")
 	end,
 }

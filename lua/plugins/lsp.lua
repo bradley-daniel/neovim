@@ -28,6 +28,7 @@ return {
 		capabilities = vim.tbl_deep_extend("force", capabilities, cmp_lsp.default_capabilities())
 		-- local capabilities = cmp_lsp.default_capabilities()
 
+		-- servers (https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md)
 		local servers = {
 			clangd = {},
 			rust_analyzer = {},
@@ -35,23 +36,28 @@ return {
 			tsserver = {},
 			html = {},
 			nil_ls = {},
+			cssls = {},
 
 			lua_ls = {
-				settings = {
-					Lua = {
-						completion = {
-							callSnippet = "Replace",
-						},
-					},
+				other = {},
+			},
+			marksman = {
+				filetypes = {
+					"markdown",
+					"markdown.mdx",
+					"quarto",
 				},
 			},
 		}
 
 		for lsp, config in pairs(servers) do
-			lspconfig[lsp].setup({
+			local opts = {
 				capabilities = capabilities,
-				settings = config.settings,
-			})
+			}
+			for key, value in pairs(config) do
+				opts[key] = value
+			end
+			lspconfig[lsp].setup(opts)
 		end
 
 		local cmp_select = { behavior = cmp.SelectBehavior.Select }
