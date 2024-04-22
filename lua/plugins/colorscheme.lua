@@ -10,7 +10,8 @@ return {
 				term_color = true,
 				color_overrides = {
 					mocha = {
-						base = "#080A0F",
+						-- base = "#080A0F",
+						base = "#09090f",
 								-- mantle = "#080A0F",
 						-- 		crust = "#bac2de",
 					},

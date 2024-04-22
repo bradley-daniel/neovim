@@ -7,6 +7,8 @@ vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 
+vim.opt.showtabline = 0
+
 vim.opt.smartindent = true
 vim.opt.wrap = false
 vim.opt.swapfile = false
@@ -40,8 +42,8 @@ vim.opt.cursorline = true
 
 vim.o.confirm = true
 --
-vim.opt.pumblend = 5 -- Popup blend
-vim.opt.pumheight = 10 -- Maximum number of entries in a popup
+-- vim.opt.pumblend = 5 -- Popup blend
+vim.opt.pumheight = 15 -- Maximum number of entries in a popup
 
 -- vim.opt.guicursor = ""
 --
