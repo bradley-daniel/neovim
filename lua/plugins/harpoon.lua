@@ -17,7 +17,7 @@ return {
         -- vim.keymap.set("n", "<C-n>", function() harpoon:list():select(3) end)
         -- vim.keymap.set("n", "<C-s>", function() harpoon:list():select(4) end)
 
-        vim.keymap.set("n", "<leader>e", mark.add_file, { desc = "Harpoon mark" })
+        vim.keymap.set("n", "<leader>m", mark.add_file, { desc = "Harpoon mark" })
         vim.keymap.set("n", "<leader>h", ui.toggle_quick_menu, { desc = "Harpoon Menu"})
         --
         vim.keymap.set("n", "<leader>1", function() ui.nav_file(1) end, { desc = "Harpoon nav_file 1" })
