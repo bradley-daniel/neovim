@@ -98,27 +98,14 @@ return {
 					buffer = "[Buffer]",
 					treesitter = "[TreeSitter]",
 				},
-				format = function(entry, vim_item)
+				format = function(_, vim_item)
 					vim_item.kind = string.format("%s ", vim.icons.kind[vim_item.kind] or "?")
 					vim_item.abbr = string.sub(vim_item.abbr, 0, 30)
-					-- vim_item.menu = ({
-					-- 	nvim_lsp = "[LSP]",
-					-- 	path = "[Path]",
-					-- 	cmp_tabnine = "[Tabnine]",
-					-- 	vsnip = "[Snippet]",
-					-- 	luasnip = "[Snippet]",
-					-- 	buffer = "[Buffer]",
-					-- 	tmux = "[TMUX]",
-					-- 	treesitter = "[TreeSitter]",
-					-- 	-- ['vim-dadbod-completion'] = "[DB]",
-					-- })[entry.source.name]
 					return vim_item
 				end,
 			},
 			window = {
-				-- completion = cmp.config.window.bordered(),
 				documentation = {
-					-- 		border = "double",
 					zindex = 1,
 				},
 			},
