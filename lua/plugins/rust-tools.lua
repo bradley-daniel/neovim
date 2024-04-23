@@ -1,7 +1,8 @@
 return {
 	{
 		"simrat39/rust-tools.nvim",
-		ft = "rust",
+		-- event = "BufEnter *.rs",
+		event = { "BufReadPost *.rs", "BufNewFile *.rs" },
 		config = function()
 			local opts = {
 				tools = {

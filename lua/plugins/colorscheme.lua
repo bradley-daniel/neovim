@@ -12,7 +12,7 @@ return {
 					mocha = {
 						-- base = "#080A0F",
 						base = "#09090f",
-								-- mantle = "#080A0F",
+						-- mantle = "#080A0F",
 						-- 		crust = "#bac2de",
 					},
 				},
@@ -50,5 +50,6 @@ return {
 	},
 	{
 		"rebelot/kanagawa.nvim",
+		enabled = false,
 	},
 }

@@ -1,5 +1,6 @@
 return {
 	"neovim/nvim-lspconfig",
+	event = { "BufReadPost", "BufNewFile" },
 	opts = { inlay_hints = true },
 	dependencies = {
 		"j-hui/fidget.nvim",
