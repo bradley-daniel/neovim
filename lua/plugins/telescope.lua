@@ -41,9 +41,6 @@ return {
         vim.keymap.set('n', '<leader>s"', "<cmd>Telescope registers<cr>", { desc = "Search Registers" })
 
 
-        vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles,
-            { desc = '[?] Find recently opened files' })
-
         vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers,
             { desc = '[ ] Find existing buffers' })
     end,

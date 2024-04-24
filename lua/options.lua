@@ -16,12 +16,6 @@ vim.opt.backup = false
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
 
--- vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
--- vim.o.foldenable = true -- enable fold for nvim-ufo
--- vim.o.foldlevel = 99 -- set high foldlevel for nvim-ufo
--- vim.o.foldlevelstart = 99 -- start with all code unfolded
--- vim.o.foldcolumn = "0"
-
 vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 
@@ -34,7 +28,7 @@ vim.opt.scrolloff = 8
 
 vim.opt.updatetime = 50
 
-vim.opt.colorcolumn = "120"
+-- vim.opt.colorcolumn = "120"
 
 vim.opt.cmdheight = 0
 

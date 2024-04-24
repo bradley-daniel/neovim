@@ -21,6 +21,7 @@ return {
 		require("neodev").setup({})
 
 		local lspconfig = require("lspconfig")
+
 		local cmp = require("cmp")
 		local cmp_lsp = require("cmp_nvim_lsp")
 		require("luasnip.loaders.from_vscode").lazy_load()
@@ -32,7 +33,15 @@ return {
 		-- servers (https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md)
 		local servers = {
 			clangd = {},
-			rust_analyzer = {},
+			rust_analyzer = {
+				settings = {
+					["rust-analyzer"] = {
+						check = {
+							command = "clippy",
+						},
+					},
+				},
+			},
 			pyright = {},
 			tsserver = {},
 			html = {},
