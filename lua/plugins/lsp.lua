@@ -58,6 +58,7 @@ return {
 					"quarto",
 				},
 			},
+            gopls = {}
 		}
 
 		for lsp, config in pairs(servers) do

@@ -6,7 +6,7 @@ return {
 	branch = "harpoon2",
 	event = { "VeryLazy" },
 	config = function()
-		-- local harpoon = require('harpoon.list')
+		local harpoon = require("harpoon.list")
 
 		local harpoon = require("harpoon"):setup({})
 
@@ -17,27 +17,19 @@ return {
 			harpoon.ui:toggle_quick_menu(harpoon:list())
 		end)
 
-		vim.keymap.set("n", "<leader>1", function()
-			harpoon:list():select(1)
-		end)
-		vim.keymap.set("n", "<leader>2", function()
-			harpoon:list():select(2)
-		end)
-		vim.keymap.set("n", "<leader>3", function()
-			harpoon:list():select(3)
-		end)
-		vim.keymap.set("n", "<leader>4", function()
-			harpoon:list():select(4)
-		end)
-		vim.keymap.set("n", "<leader>5", function()
-			harpoon:list():select(5)
-		end)
-
 		vim.keymap.set("n", "<C-S-P>", function()
 			harpoon:list():prev()
 		end)
 		vim.keymap.set("n", "<C-S-N>", function()
 			harpoon:list():next()
 		end)
+
+		for i=1, 5 do
+			local keymap = string.format("<leader>%d", i)
+            -- print(keymap)
+			vim.keymap.set("n", keymap, function()
+				harpoon:list():select(i)
+			end)
+		end
 	end,
-    }
+}

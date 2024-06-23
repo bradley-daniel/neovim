@@ -1,11 +1,11 @@
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set("n", "Q", "<nop>")
 
-vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
 
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+-- vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+-- vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 vim.keymap.set("n", "j", "gj")
 vim.keymap.set("n", "k", "gk")
@@ -33,7 +33,7 @@ vim.keymap.set("i", "<C-c>", "<Esc>")
 
 -- vim.keymap.set('n', '<leader>e', '<cmd>NvimTreeToggle<cr>', { desc = 'Nvimtree' })
 -- vim.keymap.set('n', '<leader>e', '<cmd>Neotree toggle<cr>', { desc = 'Nvimtree' })
-vim.keymap.set('n', '<leader>e', '<cmd>Oil<cr>', { desc = 'Nvimtree' })
+vim.keymap.set('n', '<leader>e', '<cmd>Oil<cr>', { desc = 'FileExpoloer' })
 
 
 -- Search center

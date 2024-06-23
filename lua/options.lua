@@ -30,7 +30,7 @@ vim.opt.updatetime = 50
 
 -- vim.opt.colorcolumn = "120"
 
-vim.opt.cmdheight = 0
+-- vim.opt.cmdheight = 0
 
 vim.opt.cursorline = true
 
