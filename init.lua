@@ -37,3 +37,6 @@ require("lazy").setup({
 		fallback = true,
 	},
 })
+
+vim.cmd([[ colorscheme kanagawa ]])
+-- vim.cmd([[ colorscheme catppuccin ]])
