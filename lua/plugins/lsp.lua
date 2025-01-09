@@ -16,7 +16,11 @@ return {
 		{ "rafamadriz/friendly-snippets" },
 		{ "saadparwaiz1/cmp_luasnip" },
 	},
+    
 	config = function()
+        -- vim.diagnostic = {
+        --     refreshSupport = false;
+        -- }
 		require("fidget").setup({})
 		require("neodev").setup({})
 
@@ -34,6 +38,9 @@ return {
 		local servers = {
 			clangd = {},
 			rust_analyzer = {
+				diagnostic = {
+					refreshSupport = false,
+				},
 				settings = {
 					["rust-analyzer"] = {
 						check = {
@@ -47,10 +54,7 @@ return {
 			html = {},
 			nil_ls = {},
 			cssls = {},
-
-			lua_ls = {
-				other = {},
-			},
+			lua_ls = {},
 			marksman = {
 				filetypes = {
 					"markdown",
@@ -58,7 +62,7 @@ return {
 					"quarto",
 				},
 			},
-            gopls = {}
+			gopls = {},
 		}
 
 		for lsp, config in pairs(servers) do
