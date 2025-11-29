@@ -123,7 +123,7 @@ return {
 			-- Padding around the floating window
 			padding = 2,
 			max_width = 0,
-			max_height = 0,
+			max_height = 10,
 			border = "rounded",
 			win_options = {
 				winblend = 0,

@@ -4,8 +4,6 @@ return {
 	opts = { inlay_hints = true },
 	dependencies = {
 		"j-hui/fidget.nvim",
-		{ "folke/neodev.nvim", opts = {} },
-
 		"hrsh7th/cmp-nvim-lsp",
 		"hrsh7th/cmp-buffer",
 		"hrsh7th/cmp-path",
@@ -16,15 +14,20 @@ return {
 		{ "rafamadriz/friendly-snippets" },
 		{ "saadparwaiz1/cmp_luasnip" },
 	},
-    
-	config = function()
-        -- vim.diagnostic = {
-        --     refreshSupport = false;
-        -- }
-		require("fidget").setup({})
-		require("neodev").setup({})
 
-		local lspconfig = require("lspconfig")
+	config = function()
+		require("fidget").setup({})
+
+		-- Rust Server Cancelled Error Workaround
+		for _, method in ipairs({ "textDocument/diagnostic", "workspace/diagnostic" }) do
+			local default_diagnostic_handler = vim.lsp.handlers[method]
+			vim.lsp.handlers[method] = function(err, result, context, config)
+				if err ~= nil and err.code == -32802 then
+					return
+				end
+				return default_diagnostic_handler(err, result, context, config)
+			end
+		end
 
 		local cmp = require("cmp")
 		local cmp_lsp = require("cmp_nvim_lsp")
@@ -38,9 +41,6 @@ return {
 		local servers = {
 			clangd = {},
 			rust_analyzer = {
-				diagnostic = {
-					refreshSupport = false,
-				},
 				settings = {
 					["rust-analyzer"] = {
 						check = {
@@ -50,7 +50,7 @@ return {
 				},
 			},
 			pyright = {},
-			tsserver = {},
+			ts_ls = {},
 			html = {},
 			nil_ls = {},
 			cssls = {},
@@ -72,7 +72,8 @@ return {
 			for key, value in pairs(config) do
 				opts[key] = value
 			end
-			lspconfig[lsp].setup(opts)
+			vim.lsp.config[lsp] = opts
+			vim.lsp.enable(lsp)
 		end
 
 		local cmp_select = { behavior = cmp.SelectBehavior.Select }
@@ -101,7 +102,7 @@ return {
 
 			---@diagnostic disable-next-line: missing-fields
 			formatting = {
-				max_width = 120,
+				max_width = 60,
 				fields = { "kind", "abbr", "menu" },
 				source_names = {
 					nvim_lsp = "[LSP]",
@@ -115,38 +116,57 @@ return {
 				format = function(_, vim_item)
 					vim_item.kind = string.format("%s ", vim.icons.kind[vim_item.kind] or "?")
 					vim_item.abbr = string.sub(vim_item.abbr, 0, 30)
+					if vim_item.menu ~= nil then
+						vim_item.menu = string.sub(vim_item.menu, 0, 10)
+					end
 					return vim_item
 				end,
 			},
 			window = {
+				completion = {
+					scrolloff = 10,
+					scrollbar = true,
+				},
 				documentation = {
+					max_height = 40,
 					zindex = 1,
+					scrollbar = true,
+					scrolloff = 8,
 				},
 			},
 		})
 
+		local signs = {
+			ERROR = vim.icons.diagnostics.Error,
+			WARN = vim.icons.diagnostics.Warning,
+			HINT = vim.icons.diagnostics.Hint,
+			INFO = vim.icons.diagnostics.Information,
+		}
+
 		vim.diagnostic.config({
-			-- update_in_insert = true,
+			underline = true,
+			severity_sort = true,
+			signs = {
+				text = {
+					[vim.diagnostic.severity.INFO] = signs.INFO,
+					[vim.diagnostic.severity.HINT] = signs.HINT,
+					[vim.diagnostic.severity.WARN] = signs.WARN,
+					[vim.diagnostic.severity.ERROR] = signs.ERROR,
+				},
+			},
 			float = {
 				focusable = false,
 				style = "minimal",
 				border = "rounded",
-				source = "always",
+				source = true,
 				header = "",
 				prefix = "",
 			},
 		})
 
-		local signs = {
-			Error = vim.icons.diagnostics.Error,
-			Warn = vim.icons.diagnostics.Warning,
-			Hint = vim.icons.diagnostics.Hint,
-			Info = vim.icons.diagnostics.Information,
-		}
-
-		for type, icon in pairs(signs) do
-			local hl = "DiagnosticSign" .. type
-			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-		end
+		-- for type, icon in pairs(signs) do
+		-- 	local hl = "DiagnosticSign" .. type
+		-- 	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+		-- end
 	end,
 }

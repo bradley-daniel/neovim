@@ -9,10 +9,10 @@ vim.g.maplocalleader = " "
 vim.icons = require("ui.icons")
 
 -- These must be here for it to package with Nix.
+require("ui.diagnostices")
 require("options")
 require("keymaps")
 require("autocmds")
-require("ui.diagnostices")
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
