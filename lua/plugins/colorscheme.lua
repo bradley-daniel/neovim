@@ -48,5 +48,12 @@ return {
 	},
 	{
 		"rebelot/kanagawa.nvim",
+        enabled = true,
+        priority = 1000,
+        lazy = false,
+        opts = {
+            undercurl = false,
+        }
+        -- theme = "wave",
 	},
 }
